@@ -10,6 +10,7 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+
 //Event for when the player connects
 io.on('connection', function (socket) {
   console.log('a user connected');
@@ -25,7 +26,7 @@ io.on('connection', function (socket) {
   socket.emit('currentPlayers', players);
   // update all other players of the new player
   socket.broadcast.emit('newPlayer', players[socket.id]);
-  
+
   //Event for when the player disconnects
   socket.on('disconnect', function () {
     console.log('user disconnected');
